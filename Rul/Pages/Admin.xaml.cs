@@ -27,7 +27,7 @@ namespace Rul.Pages
         public Admin(User currentUser)
         {
             InitializeComponent();
-            var product = RulEntities.GetContext().Product.ToList();
+            var product = RulEntities2.GetContext().Product.ToList();
             LViewProduct.ItemsSource = product;
             DataContext = this;
             txtAllAmount.Text = product.Count.ToString();
@@ -58,7 +58,7 @@ namespace Rul.Pages
 
         private void UpdateData()
         {
-            var result = RulEntities.GetContext().Product.ToList();
+            var result = RulEntities2.GetContext().Product.ToList();
 
             if (cmbSorting.SelectedIndex == 1)
                 result = result.OrderBy(p => p.ProductCost).ToList();
@@ -110,7 +110,7 @@ namespace Rul.Pages
         {
 
             OrderWindow orderWindow = new OrderWindow(orderProducts, user);
-            //orderWindow.Show();
+            orderWindow.Show();
 
         }
         private void btnAddNewProduct_Click(object sender, RoutedEventArgs e)
@@ -126,8 +126,8 @@ namespace Rul.Pages
         {
             if (Visibility == Visibility.Visible)
             {
-                RulEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-                LViewProduct.ItemsSource = RulEntities.GetContext().Product.ToList();
+                RulEntities2.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+                LViewProduct.ItemsSource = RulEntities2.GetContext().Product.ToList();
             }
         }
     }

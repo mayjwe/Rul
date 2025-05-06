@@ -4,9 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Rul.Pages" xmlns:sys="clr-namespace:System;assembly=mscorlib"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddEditProductPage">
+      mc:Ignorable="d" d:DesignWidth="800"
+      Title="AddEditProductPage" Background="White" Height="571">
 
     <Page.Resources>
         <sys:String x:Key="defaultImage">
@@ -36,7 +35,7 @@
                 <TextBox Name="txtCountInStock" Text="{Binding ProductQuantityInStock}"/>
 
                 <TextBlock Text="Еденица измерения:"/>
-                <TextBox Name="txtUnit" Text="{Binding ProductUnit}"/>
+                <TextBox Name="txtUnit" Text="{Binding Unit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="Количество в упаковке:"/>
                 <TextBox Name="txtCountInPack" Text="{Binding ProductCountinPack}"/>
@@ -45,10 +44,10 @@
                 <TextBox Name="txtMinCount" Text="{Binding ProductMinCount}"/>
 
                 <TextBlock Text="Поставщик:"/>
-                <TextBox Name="txtSupplier" Text="{Binding ProductSupplier}"/>
+                <TextBox Name="txtSupplier" Text="{Binding Supplier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Text="Размер максимальной скидки:"/>
-                <TextBox Name="txtMaxDiscount" Text="{Binding ProductMaxDiscountAmount}"/>
+                <TextBox Name="txtMaxDiscount" Text="{Binding MaxDiscountAmount}"/>
 
                 <TextBlock Text="Размер действующей скидки:"/>
                 <TextBox Name="txtDiscount" Text="{Binding ProductDiscountAmount}"/>

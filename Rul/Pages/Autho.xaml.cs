@@ -40,8 +40,8 @@ namespace Rul.Pages
             string login = txtLogin.Text.Trim();
             string password = txtPassword.Text.Trim();
             User user = new User();
-            user = RulEntities.GetContext().User.Where(p => p.UserLogin == login && p.UserPassword == password).FirstOrDefault();
-            int userCount = RulEntities.GetContext().User.Where(p => p.UserLogin == login && p.UserPassword == password).Count();
+            user = RulEntities2.GetContext().User.Where(p => p.UserLogin == login && p.UserPassword == password).FirstOrDefault();
+            int userCount = RulEntities2.GetContext().User.Where(p => p.UserLogin == login && p.UserPassword == password).Count();
             if (countUnsuccessful < 1)
             {
                 if (userCount > 0)

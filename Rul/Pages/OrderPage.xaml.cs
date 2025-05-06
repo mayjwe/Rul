@@ -39,7 +39,7 @@ namespace Rul.Pages
             productList = products;
             LViewOrder.ItemsSource = productList;
 
-            cmbPickupPoint.ItemsSource = RulEntities.GetContext().PickupPoint.ToList();
+            cmbPickupPoint.ItemsSource = RulEntities2.GetContext().PickupPoint.ToList();
 
             if (user != null)
                 txtUser.Text = $"{user.UserSurname.ToString()} {user.UserName.ToString()} {user.UserPatronymic.ToString()}";
@@ -82,7 +82,7 @@ namespace Rul.Pages
                     ReceiptCode = random.Next(100, 1000),
                     ClientFullName = txtUser.Text
                 };
-                RulEntities.GetContext().Order.Add(newOrder);
+                RulEntities2.GetContext().Order.Add(newOrder);
 
                 var productCount = new Dictionary<string, int>();
 
@@ -105,12 +105,12 @@ namespace Rul.Pages
                     {
                         OrderID = newOrder.OrderID,
                         ProductArticleNumber = entry.Key,
-                        Quantity = entry.Value
+                        //Quantity = entry.Value
                     };
-                    RulEntities.GetContext().OrderProduct.Add(newOrderProduct);
+                    RulEntities2.GetContext().OrderProduct.Add(newOrderProduct);
                 }
                 
-                RulEntities.GetContext().SaveChanges();
+                RulEntities2.GetContext().SaveChanges();
                 MessageBox.Show("Заказ оформлен!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 NavigationService.Navigate(new OrderTicketPage(newOrder, productList));
             }

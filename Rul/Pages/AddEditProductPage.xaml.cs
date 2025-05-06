@@ -56,7 +56,7 @@ namespace Rul.Pages
             if (getImageDialog.ShowDialog() == true)
             {
                 product.ProductImage = getImageDialog.SafeFileName;
-                //img.Source = new BitmapImage(new Uri(getImageDialog.FileName));
+                img.Source = new BitmapImage(new Uri(getImageDialog.FileName));
             }
         }
 
@@ -66,8 +66,8 @@ namespace Rul.Pages
             {
                 try
                 {
-                    RulEntities.GetContext().Product.Remove(product);
-                    RulEntities.GetContext().SaveChanges();
+                    RulEntities2.GetContext().Product.Remove(product);
+                    RulEntities2.GetContext().SaveChanges();
                     MessageBox.Show("Запись удалена!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                     NavigationService.GoBack();
                 }
@@ -95,11 +95,21 @@ namespace Rul.Pages
                 return;
             }
 
-           if (product.ProductArticleNumber == null)
-                RulEntities.GetContext().Product.Add(product);
+            var context = RulEntities2.GetContext();
+
+            if (product.ProductArticleNumber == null ||
+                !context.Product.Any(p => p.ProductArticleNumber == product.ProductArticleNumber))
+            {
+                context.Product.Add(product);
+            }
+            else
+            {
+                context.Entry(product).State = System.Data.Entity.EntityState.Modified;
+            }
+
             try
             {
-                RulEntities.GetContext().SaveChanges();
+                context.SaveChanges();
                 MessageBox.Show("Информация сохранена!", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
                 NavigationService.GoBack();
             }

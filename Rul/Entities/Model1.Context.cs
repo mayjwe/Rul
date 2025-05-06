@@ -13,11 +13,11 @@ namespace Rul.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RulEntities : DbContext
+    public partial class RulEntities2 : DbContext
     {
-        private static RulEntities context;
-        public RulEntities()
-            : base("name=RulEntities")
+        private static RulEntities2 context;
+        public RulEntities2()
+            : base("name=RulEntities2")
         {
         }
     
@@ -25,21 +25,21 @@ namespace Rul.Entities
         {
             throw new UnintentionalCodeFirstException();
         }
-        public static RulEntities GetContext()
+
+        public static RulEntities2 GetContext()
         {
             if (context == null)
             {
-                context = new RulEntities();
+                context = new RulEntities2();
             }
             return context;
         }
-
         public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderProduct> OrderProduct { get; set; }
         public virtual DbSet<PickupPoint> PickupPoint { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
-        //public virtual DbSet<OrderProduct> OrderProducts { get; set; }
     }
 }

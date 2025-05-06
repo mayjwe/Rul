@@ -17,7 +17,7 @@ namespace Rul.Pages
         public Client(User currentUser)
         {
             InitializeComponent();
-            var product = RulEntities.GetContext().Product.ToList();
+            var product = RulEntities2.GetContext().Product.ToList();
             LViewProduct.ItemsSource = product;
             DataContext = this;
             txtAllAmount.Text = product.Count.ToString();
@@ -48,7 +48,7 @@ namespace Rul.Pages
 
         private void UpdateData()
         {
-            var result = RulEntities.GetContext().Product.ToList();
+            var result = RulEntities2.GetContext().Product.ToList();
 
             if (cmbSorting.SelectedIndex == 1)
                 result = result.OrderBy(p => p.ProductCost).ToList();
@@ -98,19 +98,19 @@ namespace Rul.Pages
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
-            /*
+            
             if (user != null)
             {
-            */
+            
                 OrderWindow orderWindow = new OrderWindow(orderProducts, user);
-               // orderWindow.Show();
-            /*
+                orderWindow.Show();
+            
             }
             else
             {
                 MessageBox.Show("Зарегистрируйтесь, чтобы заказывать!");
             }
-            */
+            
         }
     }
 }
