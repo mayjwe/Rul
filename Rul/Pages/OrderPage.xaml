@@ -56,7 +56,7 @@
 
         <StackPanel Grid.Row="1">
             <TextBlock Text="Пункт выдачи заказов:"/>
-            <ComboBox Name="cmbPickupPoint" DisplayMemberPath="PickupPointAdress" SelectedItem="PickupPointID"/>
+            <ComboBox Name="cmbPickupPoint" DisplayMemberPath="Address"/>
             <TextBlock Text="Клиент:"/>
             <TextBlock x:Name="txtUser"/>
             <TextBlock Text="Итого:"/>
